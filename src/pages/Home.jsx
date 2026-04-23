@@ -1,12 +1,120 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 function Home() {
+  const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/products?limit=6")
+      .then(res => res.json())
+      .then(data => setProducts(data.products));
+  }, []);
+
   return (
     <div>
-      <h1>This is the Home Page</h1>
-      <p className="text-9xl
-">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ipsum amet animi quia tenetur. Necessitatibus culpa dicta odit nulla, maxime corporis, officiis, assumenda eveniet recusandae id eos temporibus cum soluta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus doloribus et porro, cupiditate, corrupti rerum dolore optio voluptate explicabo quis obcaecati ad dolores fugit nam aperiam tempore delectus. Pariatur, velit!Loreml Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, rem. Hic, veniam. Molestias asperiores veritatis deserunt, odio atque quia, obcaecati maxime alias quisquam ipsam in dignissimos at! Deleniti, porro laudantium? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non doloribus hic, modi atque quam voluptatem autem molestias culpa reiciendis reprehenderit debitis nesciunt incidunt, pariatur ipsam error consequatur assumenda excepturi dolores! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam libero eveniet dolorum rem ullam necessitatibus eos, nemo dolor laboriosam quos cumque reiciendis exercitationem, nihil enim aut quam maiores eaque assumenda. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum tempora minima eaque neque porro fugit nobis accusamus quaerat, rerum expedita libero facilis reiciendis quod hic nostrum exercitationem nesciunt repudiandae harum. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat mollitia vel quae placeat asperiores quia deleniti, dicta error eaque maxime porro illo nesciunt, inventore at adipisci labore. Id, sunt earum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem aperiam officia iusto tempora doloribus, libero earum necessitatibus tempore assumenda quae recusandae adipisci porro minima ut reiciendis enim soluta ea eius! Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus sequi libero atque. Sapiente laborum maxime illum id at voluptates autem consequatur animi doloremque tempora consequuntur quod hic, est totam deserunt. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque aut odio beatae quae repellendus molestiae sequi blanditiis voluptates laboriosam! In sapiente excepturi perspiciatis fuga praesentium incidunt neque commodi eos aut? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates tempora vero quia reprehenderit quasi odio laboriosam ea sequi, cupiditate, sed nesciunt aspernatur adipisci rerum magnam incidunt soluta enim nemo quidem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit expedita exercitationem quia at neque ullam reiciendis praesentium perferendis ut, illo et culpa amet obcaecati, dolores eius tempora non rerum voluptas. Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi rem quaerat vel repellat, dolorem cupiditate voluptatem nihil expedita eligendi architecto quibusdam soluta, ipsam at tempora nostrum dolorum voluptates repellendus esse. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident expedita fugit ipsa sapiente rerum molestiae libero totam ad velit, obcaecati animi vero nobis incidunt vitae cupiditate, iusto necessitatibus est quas? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro itaque corrupti, dicta magnam error culpa eaque, quos aperiam pariatur iste doloremque perspiciatis illo, possimus autem facere obcaecati repellat dolores iure? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptates ab quod mollitia natus cupiditate fugit aliquid pariatur enim nihil laboriosam, voluptas eligendi! Quasi exercitationem ut amet eum excepturi non. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum culpa, ut at reiciendis expedita saepe impedit voluptates voluptatem minima, nihil recusandae aliquam? Pariatur ipsa iure explicabo natus esse voluptas magnam! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt tenetur nesciunt facilis possimus. Magni eveniet quae quasi consequuntur similique a ea quam, incidunt exercitationem distinctio omnis nulla deserunt voluptas ipsam. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure quia quisquam minus facere. Eligendi totam non inventore explicabo officia quam iste quisquam beatae, cumque sequi. Fugit dolores et nam tempora? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem pariatur laboriosam reprehenderit, perspiciatis molestias quibusdam quas dolorum fugit debitis nisi quam necessitatibus ipsum. Porro, facere iste laboriosam assumenda ratione repudiandae. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur soluta sit labore laborum tempore quis totam, nisi ut illum nemo ipsum id delectus saepe, aliquid repudiandae at provident cum necessitatibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto culpa cupiditate inventore optio facere, corrupti quasi pariatur, harum consequatur ea animi quaerat cum. Consequatur, explicabo numquam labore ad quod sapiente? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore animi aut neque sapiente porro provident, iure voluptatum minus iusto qui error vel ratione ipsa nesciunt adipisci libero consectetur maxime numquam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium harum distinctio, eveniet ducimus reprehenderit temporibus mollitia eius aliquam tempora laborum modi sapiente nulla? Facilis ex laboriosam non quaerat, sit minus. Lorem ipsum dolor sit amet consectetur adipisicing elit. In vel repellendus beatae cupiditate a, rerum ipsam deserunt optio natus quis perferendis dolorum praesentium quasi ut modi et commodi cum tempore.</p>
+
+      {/* ── Hero / Ad Section ── */}
+      <div style={{
+        backgroundColor: "#14213d",
+        padding: "60px 40px",
+        textAlign: "center"
+      }}>
+        <h1 style={{ fontSize: "2.4rem", color: "#ffffff", marginBottom: "14px" }}>
+          Your One-Stop Shop for Everything
+        </h1>
+        <p style={{
+          fontSize: "1.1rem",
+          color: "#e5e5e5",
+          maxWidth: "580px",
+          margin: "0 auto 28px",
+          lineHeight: "1.7"
+        }}>
+          Thousands of products. Unbeatable prices. Fast delivery straight to your door.
+          Whether you need electronics, fashion, or everyday essentials — we have it all.
+        </p>
+        <button
+          onClick={() => navigate("/login")}
+          style={{
+            padding: "12px 32px",
+            backgroundColor: "#fca311",
+            color: "#000000",
+            border: "none",
+            borderRadius: "50px",
+            fontSize: "1rem",
+            cursor: "pointer",
+            fontWeight: "600"
+          }}
+        >
+          Register Now
+        </button>
+      </div>
+
+      {/* ── Value Points ── */}
+      <div style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: "40px",
+        padding: "36px 40px",
+        backgroundColor: "#e5e5e5",
+        flexWrap: "wrap"
+      }}>
+        {[
+          { title: "Wide Selection", desc: "Thousands of products across all categories." },
+          { title: "Best Prices", desc: "Competitive pricing with regular deals." },
+          { title: "Fast Delivery", desc: "Quick and reliable shipping nationwide." }
+        ].map(item => (
+          <div key={item.title} style={{ maxWidth: "220px", textAlign: "center" }}>
+            <p style={{ fontWeight: "700", fontSize: "1.05rem", color: "#14213d", marginBottom: "6px" }}>
+              {item.title}
+            </p>
+            <p style={{ fontSize: "0.95rem", color: "#000000", lineHeight: "1.6" }}>{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* ── Featured Products ── */}
+      <h1 style={{ marginTop: "40px" }}>Featured Products</h1>
+
+      <div className="cards-container">
+        {products.map(product => (
+          <div className="box" key={product.id}>
+            <img
+              src={product.thumbnail}
+              alt={product.title}
+              style={{ width: "100%", height: "180px", objectFit: "contain" }}
+            />
+            <p><b>{product.title}</b></p>
+            <p><b>Price:</b> ${product.price}</p>
+            <p><b>Rating:</b> {product.rating} / 5</p>
+          </div>
+        ))}
+      </div>
+
+      {/* ── Bottom CTA ── */}
+      <div style={{ textAlign: "center", margin: "50px 20px" }}>
+        <p style={{ fontSize: "1.1rem", color: "#000000", marginBottom: "16px" }}>
+          Join thousands of happy customers. Sign up and start shopping today.
+        </p>
+        <button
+          onClick={() => navigate("/login")}
+          style={{
+            padding: "12px 32px",
+            backgroundColor: "#fca311",
+            color: "#000000",
+            border: "none",
+            borderRadius: "50px",
+            fontSize: "1rem",
+            cursor: "pointer",
+            fontWeight: "600"
+          }}
+        >
+          Register Now
+        </button>
+      </div>
 
     </div>
-  )
+  );
 }
+
 export default Home;
