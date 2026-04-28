@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faHeart, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import "../components/Product.css";
+import heroImg from "../assets/about/product-hero.png";
 
 const Product = () => {
   const [products, setApiData] = useState([]);
@@ -72,11 +74,18 @@ const Product = () => {
     product.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  return (
-    <div className="contai">
-      <h1>Scroll down to see more about our Products</h1>
+ return (
+  <div className="product-page">
 
-      {/*  Search Bar */}
+    <section
+      className="product-hero"
+      style={{ backgroundImage: `url(${heroImg})` }}
+    >
+    </section>
+
+    <div className="contai">
+
+      {/* Search Bar */}
       <div className="search-wrapper">
         <input
           type="text"
@@ -87,7 +96,7 @@ const Product = () => {
         />
       </div>
 
-      {/* No results message */}
+      {/* No Results */}
       {search && filteredProducts.length === 0 && (
         <p className="no-results">Sorry, product not available :(</p>
       )}
@@ -95,44 +104,43 @@ const Product = () => {
       <section className="cards-container">
         {filteredProducts.map((product) => {
           const oos = outOfStockIds.has(product.id);
+
           return (
-            <div className={`box ${oos ? 'oos-box' : ''}`} key={product.id}>
+            <div className={`box ${oos ? "oos-box" : ""}`} key={product.id}>
 
-              {/* Out of Stock Badge */}
               {oos && <div className="oos-badge">Out of Stock</div>}
-              <br />
 
-              {/* ❤️ Wishlist — always allowed */}
               <div
-                className={`wish ${isInWishlist(product.id) ? 'active' : ''}`}
+                className={`wish ${isInWishlist(product.id) ? "active" : ""}`}
                 onClick={() => toggleWishlist(product)}
               >
                 <FontAwesomeIcon icon={faHeart} />
               </div>
-              <br />
 
-              {/* 🛒 Cart — disabled if out of stock */}
               <div
-                className={`cart ${isInCart(product.id) ? 'active' : ''} ${oos ? 'icon-disabled' : ''}`}
+                className={`cart ${isInCart(product.id) ? "active" : ""} ${oos ? "icon-disabled" : ""}`}
                 onClick={() => !oos && toggleCart(product)}
-                title={oos ? "Out of Stock — cannot add to cart" : "Add to Cart"}
               >
                 <FontAwesomeIcon icon={faCartShopping} />
               </div>
 
               <img src={product.thumbnail} alt={product.title} />
+
               <p><b>{product.title}</b></p>
               <p><b>Price:</b> ${product.price}</p>
               <p><b>Rating:</b> ⭐{product.rating}</p>
 
-              {/* 🔔 Notify message for OOS */}
               {oos && (
-                <p className="notify-msg">You will be notified when available</p>
+                <p className="notify-msg">
+                  You will be notified when available
+                </p>
               )}
 
-              {/* 🗑️ Delete — disabled if out of stock */}
               {!oos && (
-                <div className="del" onClick={() => BlinkGone(product.id)}>
+                <div
+                  className="del"
+                  onClick={() => BlinkGone(product.id)}
+                >
                   <FontAwesomeIcon icon={faTrash} />
                 </div>
               )}
@@ -141,8 +149,11 @@ const Product = () => {
           );
         })}
       </section>
+
     </div>
-  );
+
+  </div>
+);
 };
 
 export default Product;

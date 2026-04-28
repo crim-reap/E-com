@@ -1,0 +1,186 @@
+/* ===========================
+   THANK YOU PAGE
+=========================== */
+
+body,
+#root,
+.ty-page {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ececec, #e3e3e3);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===========================
+   PAGE CENTER
+=========================== */
+
+.ty-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.ty-card {
+  width: 100%;
+  max-width: 620px;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 48px 42px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  text-align: center;
+  animation: fadeUp 0.6s ease;
+}
+
+/* ===========================
+   SUCCESS ICON FEEL
+=========================== */
+
+.ty-card::before {
+  content: "✓";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  background: #14264b;
+  color: #ffffff;
+  font-size: 42px;
+  font-weight: 800;
+}
+
+/* ===========================
+   TITLES
+=========================== */
+
+.ty-title {
+  margin: 0;
+  font-size: 48px;
+  color: #14264b;
+  font-weight: 800;
+}
+
+.ty-subtitle {
+  margin-top: 14px;
+  color: #666;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* ===========================
+   DETAILS BOX
+=========================== */
+
+.ty-details {
+  margin-top: 28px;
+  text-align: left;
+  background: #f8f8f8;
+  border-radius: 18px;
+  padding: 24px;
+  border: 1px solid #ececec;
+}
+
+.ty-details p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.ty-details b {
+  color: #14264b;
+}
+
+/* ===========================
+   NOTE
+=========================== */
+
+.ty-note {
+  margin-top: 24px;
+  color: #777;
+  font-size: 16px;
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.ty-btn {
+  margin-top: 28px;
+  width: 100%;
+  padding: 17px;
+  border: none;
+  border-radius: 40px;
+  background: #fca311;
+  color: #111;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.ty-btn:hover {
+  background: #ffb424;
+  transform: translateY(-3px);
+}
+
+/* ===========================
+   ANIMATION
+=========================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 576px) {
+  .ty-card {
+    padding: 34px 22px;
+    border-radius: 22px;
+  }
+
+  .ty-title {
+    font-size: 34px;
+  }
+
+  .ty-subtitle {
+    font-size: 16px;
+  }
+
+  .ty-details {
+    padding: 18px;
+  }
+
+  .ty-details p {
+    font-size: 15px;
+  }
+
+  .ty-btn {
+    padding: 15px;
+  }
+
+  .ty-card::before {
+    width: 68px;
+    height: 68px;
+    font-size: 34px;
+  }
+}

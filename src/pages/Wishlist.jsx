@@ -1,85 +1,102 @@
-import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import "../components/wishlist.css";
+import heroImg from "../assets/about/wishlist-hero.png";
 
 function Wishlist() {
-    const [wishlist, setWishlist] = useState([]);
-    const [cart, setCart] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
+  const [cart, setCart] = useState([]);
 
-    // 🔄 Load wishlist and cart from localStorage on mount
-    useEffect(() => {
-        const storedWishlist = localStorage.getItem("wishlist");
-        if (storedWishlist) setWishlist(JSON.parse(storedWishlist));
+  useEffect(() => {
+    const storedWishlist = localStorage.getItem("wishlist");
+    if (storedWishlist) setWishlist(JSON.parse(storedWishlist));
 
-        const storedCart = localStorage.getItem("cart");
-        if (storedCart) setCart(JSON.parse(storedCart));
-    }, []);
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) setCart(JSON.parse(storedCart));
+  }, []);
 
-    // ✅ Check if item is already in cart
-    const isInCart = (id) => cart.some(item => item.id === id);
+  const isInCart = (id) => cart.some((item) => item.id === id);
 
-    // ❌ Remove from wishlist
-    function removeWish(id) {
-        const updated = wishlist.filter(product => product.id !== id);
-        setWishlist(updated);
-        localStorage.setItem("wishlist", JSON.stringify(updated));
+  function removeWish(id) {
+    const updated = wishlist.filter((product) => product.id !== id);
+    setWishlist(updated);
+    localStorage.setItem("wishlist", JSON.stringify(updated));
+  }
+
+  function toggleCart(product) {
+    const current = JSON.parse(localStorage.getItem("cart")) || [];
+    const exists = current.find((item) => item.id === product.id);
+
+    let updated;
+    if (exists) {
+      updated = current.filter((item) => item.id !== product.id);
+    } else {
+      updated = [...current, { ...product, quantity: 1 }];
     }
 
-    // 🛒 Toggle cart: add if not in cart, remove if already in cart
-    function toggleCart(product) {
-        const current = JSON.parse(localStorage.getItem("cart")) || [];
-        const exists = current.find(item => item.id === product.id);
+    localStorage.setItem("cart", JSON.stringify(updated));
+    setCart(updated);
+  }
 
-        let updated;
-        if (exists) {
-            updated = current.filter(item => item.id !== product.id);
-        } else {
-            updated = [...current, { ...product, quantity: 1 }];
-        }
+  return (
+    <div className="wishlist-page">
 
-        localStorage.setItem("cart", JSON.stringify(updated));
-        setCart(updated);
-    }
+      {/* HERO */}
+      <section
+        className="wishlist-hero"
+        style={{ backgroundImage: `url(${heroImg})` }}
+      ></section>
 
-    return (
-        <div>
-            <h1>You are in your WISHLIST AREA!!!!</h1>
+      {/* TITLE */}
+      <section className="wishlist-head">
+        <h2>Your Wishlist</h2>
+        <p>Saved favorites waiting for you.</p>
+      </section>
 
-            <section className="cards-container">
-                {wishlist.length === 0 ? (
-                    <p>Your wishlist is empty.</p>
-                ) : (
-                    wishlist.map(product => (
-                        <div className="box" key={product.id}>
+      {/* PRODUCTS */}
+      <section className="cards-container">
 
-                            <img src={product.thumbnail} alt={product.title} />
-                            <p><b>{product.title}</b></p>
-                            <p><b>Price:</b> ${product.price}</p>
-                            <p><b>Rating:</b> ⭐{product.rating}</p>
+        {wishlist.length === 0 ? (
+          <div className="empty-wishlist">
+            <h3>Your wishlist is empty</h3>
+            <p>Add products you love and they’ll appear here.</p>
+          </div>
+        ) : (
+          wishlist.map((product) => (
+            <div className="box" key={product.id}>
 
-                            {/* 🛒 Toggle Cart — turns black when active */}
-                            <div
-                                className={`cart ${isInCart(product.id) ? 'active' : ''}`}
-                                onClick={() => toggleCart(product)}
-                            >
-                                <FontAwesomeIcon icon={faCartShopping} />
-                            </div>
-                            <br />
+              <img src={product.thumbnail} alt={product.title} />
 
-                            {/* ❌ Remove from Wishlist */}
-                            <div
-                                className="del"
-                                onClick={() => removeWish(product.id)}
-                            >
-                                <FontAwesomeIcon icon={faTrash} />
-                            </div>
+              <p><b>{product.title}</b></p>
+              <p><b>Price:</b> ${product.price}</p>
+              <p><b>Rating:</b> ⭐ {product.rating}</p>
 
-                        </div>
-                    ))
-                )}
-            </section>
-        </div>
-    );
+              <div className="wishlist-actions">
+
+                <div
+                  className={`cart ${isInCart(product.id) ? "active" : ""}`}
+                  onClick={() => toggleCart(product)}
+                >
+                  <FontAwesomeIcon icon={faCartShopping} />
+                </div>
+
+                <div
+                  className="del"
+                  onClick={() => removeWish(product.id)}
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                </div>
+
+              </div>
+
+            </div>
+          ))
+        )}
+
+      </section>
+    </div>
+  );
 }
 
 export default Wishlist;

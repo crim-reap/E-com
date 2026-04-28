@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../components/Checkout.css";
 
 function Special() {
     const navigate = useNavigate();
@@ -54,7 +55,8 @@ function Special() {
         // Clear cart after placing order
         localStorage.removeItem("cart");
 
-        navigate('/ThankYou');
+        // ✅ Small delay so localStorage fully commits before unmount
+        setTimeout(() => navigate('/ThankYou'), 100);
     };
 
     return (

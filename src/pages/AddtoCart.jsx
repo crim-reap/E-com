@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faClockRotateLeft, faXmark, faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import "../components/AddToCart.css";
 
 function AddToCart() {
     const [cart, setCart] = useState([]);
@@ -24,17 +25,44 @@ function AddToCart() {
     };
 
     const loadPastOrders = () => {
-        const orders = JSON.parse(localStorage.getItem("allOrders") || "[]");
-        setPastOrders(orders.reverse()); // newest first
+        const raw = localStorage.getItem("allOrders");
+        if (!raw) {
+            setPastOrders([]);
+            return;
+        }
+        try {
+            const orders = JSON.parse(raw);
+            setPastOrders([...orders].reverse());
+        } catch (e) {
+            console.error("Failed to parse allOrders:", e);
+            setPastOrders([]);
+        }
     };
 
+    // ✅ Load both cart and orders on mount
     useEffect(() => {
         loadCart();
+        loadPastOrders();
     }, []);
 
+    // ✅ Listen for localStorage changes from other tabs/pages
     useEffect(() => {
-        window.addEventListener("focus", loadCart);
-        return () => window.removeEventListener("focus", loadCart);
+        const handleStorage = (e) => {
+            if (e.key === "allOrders") loadPastOrders();
+            if (e.key === "cart") loadCart();
+        };
+        window.addEventListener("storage", handleStorage);
+        return () => window.removeEventListener("storage", handleStorage);
+    }, []);
+
+    // ✅ Re-read when window gets focus (navigating back from Special/ThankYou)
+    useEffect(() => {
+        const handleFocus = () => {
+            loadCart();
+            loadPastOrders();
+        };
+        window.addEventListener("focus", handleFocus);
+        return () => window.removeEventListener("focus", handleFocus);
     }, []);
 
     function increaseQty(id) {
@@ -67,7 +95,7 @@ function AddToCart() {
     );
 
     const handleOpenOrders = () => {
-        loadPastOrders();
+        loadPastOrders(); // ✅ Always fetch fresh before opening modal
         setShowOrders(true);
     };
 
@@ -81,13 +109,18 @@ function AddToCart() {
 
     return (
         <div className="cart-page">
-            <div className="cart-header-row">
-                <h1>Your CART </h1>
+
+            <section className="cart-top-banner">
+                <h1>Your Shopping Cart</h1>
+                <p>Review items, manage quantities and checkout securely.</p>
+            </section>
+
+            {/* <div className="cart-header-row">
                 <button className="past-orders-btn" onClick={handleOpenOrders}>
                     <FontAwesomeIcon icon={faClockRotateLeft} />
                     &nbsp; Past Orders
                 </button>
-            </div>
+            </div> */}
 
             <section className="cards-container">
                 {cart.length === 0 ? (
@@ -126,7 +159,7 @@ function AddToCart() {
                 </div>
             )}
 
-            {/* ─── Past Orders Modal ─── */}
+            {/* Past Orders Modal */}
             {showOrders && (
                 <div className="modal-overlay" onClick={() => setShowOrders(false)}>
                     <div className="modal-box" onClick={e => e.stopPropagation()}>

@@ -1,0 +1,238 @@
+/* ================= CAREER PAGE ================= */
+
+body,
+#root,
+.career-page {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #ececec;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================= HERO ================= */
+
+.career-hero {
+  width: 100%;
+  height: 380px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* ================= BENEFITS ================= */
+
+.career-benefits {
+  padding: 70px 25px;
+  text-align: center;
+}
+
+.career-benefits h2 {
+  font-size: 48px;
+  color: #14264b;
+  margin-bottom: 50px;
+  font-weight: 800;
+}
+
+.benefit-grid {
+  max-width: 1250px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.benefit-card {
+  background: #ffffff;
+  padding: 30px 24px;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #14264b;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.05);
+  transition: 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 32px rgba(0,0,0,0.08);
+}
+
+/* ================= FORM SECTION ================= */
+
+.career-form-section {
+  padding: 40px 20px 90px;
+  text-align: center;
+}
+
+.career-form-section h2 {
+  font-size: 46px;
+  color: #14264b;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.career-form-section p {
+  color: #666;
+  font-size: 18px;
+  margin-bottom: 45px;
+}
+
+/* Form container */
+.full-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contaainer {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+
+.d {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 42px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  text-align: left;
+}
+
+/* Labels */
+
+.d label {
+  display: block;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 700;
+  color: #14264b;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+/* Inputs */
+
+.d input,
+.d textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #d8d8d8;
+  border-radius: 10px;
+  font-size: 15px;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+}
+
+.d input:focus,
+.d textarea:focus {
+  border-color: #14264b;
+}
+
+/* Textarea */
+
+.d textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+/* Radio buttons */
+.radio-group input[type="radio"] {
+  transform: scale(1.45);
+  accent-color: #14264b;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.radio-group {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 28px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.radio-group label {
+  width: auto;
+  margin: 0;
+  font-weight: 500;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Submit button */
+
+.submit {
+  margin-top: 15px;
+  border: none;
+  background: #f4a300;
+  color: #111;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 16px 28px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.submit:hover {
+  background: #ffb51d;
+  transform: translateY(-3px);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 992px) {
+  .career-hero {
+    height: 320px;
+  }
+
+  .career-benefits h2,
+  .career-form-section h2 {
+    font-size: 38px;
+  }
+
+  .benefit-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .career-hero {
+    height: 230px;
+  }
+
+  .benefit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .career-benefits h2,
+  .career-form-section h2 {
+    font-size: 30px;
+  }
+
+  .d {
+    padding: 25px;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

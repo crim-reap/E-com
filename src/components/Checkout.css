@@ -1,0 +1,229 @@
+/* ===========================
+   SPECIAL / CHECKOUT PAGE
+=========================== */
+
+body,
+#root,
+.custom-page {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #ececec;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===========================
+   PAGE WRAPPER
+=========================== */
+
+.custom-page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 55px 20px 90px;
+}
+
+/* ===========================
+   TITLE
+=========================== */
+
+.custom-title {
+  text-align: center;
+  font-size: 52px;
+  color: #14264b;
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.custom-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 30px;
+  margin-bottom: 26px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+}
+
+/* ===========================
+   SECTION HEADING
+=========================== */
+
+.section-heading {
+  margin: 0 0 24px;
+  color: #14264b;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+/* ===========================
+   CHECKBOX
+=========================== */
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  color: #14264b;
+}
+
+.checkbox-label input {
+  width: 18px;
+  height: 18px;
+  accent-color: #14264b;
+}
+
+/* ===========================
+   FORM GROUP
+=========================== */
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #14264b;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ===========================
+   INPUTS
+=========================== */
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 15px 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 14px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: 0.3s ease;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #14264b;
+  box-shadow: 0 0 0 3px rgba(20,38,75,0.08);
+}
+
+/* ===========================
+   CUSTOM SECTION OPEN
+=========================== */
+
+.custom-form-inner {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #ececec;
+}
+
+/* ===========================
+   PAYMENT
+=========================== */
+
+.payment-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.payment-label {
+  padding: 14px 18px;
+  border: 1px solid #d8d8d8;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  color: #333;
+  background: #fff;
+  transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.payment-label input {
+  accent-color: #14264b;
+}
+
+.payment-label:hover {
+  border-color: #14264b;
+}
+
+.payment-label.selected {
+  background: #14264b;
+  color: white;
+  border-color: #14264b;
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.submit-btn {
+  width: 100%;
+  border: none;
+  border-radius: 45px;
+  padding: 18px;
+  background: #fca311;
+  color: #111;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-top: 12px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  background: #ffb424;
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 768px) {
+  .custom-page {
+    padding: 40px 16px 70px;
+  }
+
+  .custom-title {
+    font-size: 36px;
+    margin-bottom: 28px;
+  }
+
+  .custom-card {
+    padding: 22px;
+    border-radius: 18px;
+  }
+
+  .section-heading {
+    font-size: 24px;
+  }
+
+  .payment-options {
+    flex-direction: column;
+  }
+
+  .payment-label {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .submit-btn {
+    padding: 16px;
+  }
+}

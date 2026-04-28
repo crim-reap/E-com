@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import "../components/Career.css";
+import heroImg from "../assets/about/career-hero.png";
 
 function Career() {
   const [values, setValues] = useState({
@@ -45,62 +47,69 @@ function Career() {
   };
 
   return (
-    <div>
-      <h1>Career</h1>
-      <p> lets hear the benefits of joining our company</p>
-      <p className="ul">
-        <ul>
-          <li>free food</li>
-          <li>insuarance benefits</li>
-          <li>great paid vacation</li>
-          <li>better life</li>
-          <li>can touch grass as inside garden is available</li>
-        </ul>
+  <div className="career-page">
 
-      </p>
+    <section
+      className="career-hero"
+      style={{ backgroundImage: `url(${heroImg})` }}
+    ></section>
 
+    <section className="career-benefits">
+      <h2>Why Join DODODEX?</h2>
 
-
-      <h1> WANNA JOIN?
-        fill the form
-
-      </h1>
-      <div className="contaainer">
-        <div className='d' onSubmit={handleSubmit}>
-          <label>First Name:</label>
-          <input type="text" name="firstname" placeholder="Enter your First Name" value={values.firstname} onChange={handleChanges} required />
-
-          <label>Last Name:</label>
-          <input type="text" name="lastname" placeholder="Enter your Last Name" value={values.lastname} onChange={handleChanges} required />
-
-          <label>Email:</label>
-          <input type="email" name="email" placeholder="Enter your Email" value={values.email} onChange={handleChanges} required />
-
-          <label>Phone No:</label>
-          <input type="tel" name="contact" placeholder="Enter your Phone No." value={values.contact} onChange={handleChanges} required />
-
-          <label>Gender:</label>
-          <label><input type="radio" name="gender" value="Female" onChange={handleChanges} /> Female</label>
-          <label><input type="radio" name="gender" value="Other" onChange={handleChanges} /> Other</label>
-          <label><input type="radio" name="gender" value="Male" onChange={handleChanges} /> Male</label>
-
-          <label>Resume:</label>
-          <input type="file" name="resume" onChange={handleChanges} />
-
-          <label>Image URL:</label>
-          <input type="text" name="url" placeholder="Enter Image URL" value={values.url} onChange={handleChanges} />
-
-          <label>Education:</label>
-          <input type="text" name="education" placeholder="Which degree you have" value={values.education} onChange={handleChanges} required />
-
-          <label>About You:</label>
-          <textarea name="about" cols="30" rows="5" placeholder="Enter Description" value={values.about} onChange={handleChanges} />
-
-          <button className="submit">Submit</button>
-        </div>
+      <div className="benefit-grid">
+        <div className="benefit-card">🍴 Free Meals & Snacks</div>
+        <div className="benefit-card">🧑‍⚕️ Insurance Benefits</div>
+        <div className="benefit-card">✈️ Paid Vacations</div>
+        <div className="benefit-card">😁 Better Work-Life Balance</div>
+        <div className="benefit-card">🍂 Indoor Garden Space</div>
+        <div className="benefit-card">📈 Growth Opportunities</div>
       </div>
-    </div>
-  );
+    </section>
+
+    <section className="career-form-section full-center">
+      <h2>Join Our Team</h2>
+      <p>Fill out the form below and begin your journey with us.</p>
+
+      <form className="contaainer d" onSubmit={handleSubmit}>
+        <label>First Name</label>
+        <input type="text" name="firstname" placeholder="Enter your First Name" value={values.firstname} onChange={handleChanges} required />
+
+        <label>Last Name</label>
+        <input type="text" name="lastname" placeholder="Enter your Last Name" value={values.lastname} onChange={handleChanges} required />
+
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your Email" value={values.email} onChange={handleChanges} required />
+
+        <label>Phone No</label>
+        <input type="tel" name="contact" placeholder="Enter your Phone No." value={values.contact} onChange={handleChanges} required />
+
+        <label>Gender</label>
+
+        <div className="radio-group">
+          <label><input type="radio" name="gender" value="Female" onChange={handleChanges} /> Female</label>
+          <label><input type="radio" name="gender" value="Male" onChange={handleChanges} /> Male</label>
+          <label><input type="radio" name="gender" value="Other" onChange={handleChanges} /> Other</label>
+        </div>
+
+        <label>Resume</label>
+        <input type="file" name="resume" onChange={handleChanges} />
+
+        <label>Image URL</label>
+        <input type="text" name="url" placeholder="Enter Image URL" value={values.url} onChange={handleChanges} />
+
+        <label>Education</label>
+        <input type="text" name="education" placeholder="Which degree you have" value={values.education} onChange={handleChanges} required />
+
+        <label>About You</label>
+        <textarea name="about" rows="5" placeholder="Tell us about yourself" value={values.about} onChange={handleChanges}></textarea>
+
+        <button className="submit">Submit Application</button>
+      </form>
+    </section>
+
+  </div>
+);
 }
 
 export default Career;
